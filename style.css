@@ -1,0 +1,117 @@
+.css-1xj06dd {
+    width: 700px;
+    position: relative;
+    padding-top: 0%;
+    display: inline;
+    padding: .5rem;
+}
+ .css-18e3th9.egzxvld2{
+padding-left: 5rem;
+padding-right: 5rem;
+padding-top: 0px;
+}
+
+.css-fg4pbf {
+    position: absolute;
+    background: rgb(233, 231, 231);
+    color: rgb(94, 105, 170);
+    inset: 0px;
+    overflow: hidden;
+}
+.css-fg4pbf {
+    position: absolute;
+    background: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    inset: 5px;
+    overflow: hidden;
+}
+.css-6qob1r {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: overlay;
+    color: rgb(0, 0, 0);
+}
+.css-1prua9e {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    font-weight: 400;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    margin: 0px;
+    line-height: 1.6;
+    color: inherit;
+    width: auto;
+    user-select: none;
+    background-color: rgb(225 218 235);
+    border: 1px solid rgba(49, 51, 63, 0.2);}
+    .css-demzbm {
+        -webkit-box-align: center;
+        align-items: center;
+        background-color: rgb(225 218 235);
+        border-radius: 100%;
+        border-style: none;
+        box-shadow: none;
+        display: flex;
+        height: 0.75rem;
+        -webkit-box-pack: center;
+        justify-content: center;
+        width: 0.75rem;
+    }
+    .css-6qob1r {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        overflow: overlay;
+        color: rgb(0 0 0);
+    }
+    .css-10y5sf6 {
+        font-family: "Source Code Pro", monospace;
+        font-size: 14px;
+        padding-bottom: 9.33333px;
+        color: rgb(0 0 0);
+        top: -22px;
+        position: absolute;
+        white-space: nowrap;
+        background-color: transparent;
+        line-height: 1.6;
+        font-weight: normal;
+    }
+    .css-button{
+        color:rgb(225 218 235); ;
+    }
+    .css-root:focus(:active) {
+        --primary-color: rgb(225 218 235); 
+        --background-color: #ffffff;
+        --secondary-background-color: #f0f2f6;
+        --text-color: #31333F;
+        --font: "Source Sans Pro", sans-serif;
+    }
+    .st-d1 {
+        border-left-color: rgb(160, 176, 226);
+    }
+    .st-d5 {
+        background-color: rgb(160, 176, 226);
+    }
+    .st-d3 {
+        border-bottom-color: rgb(160, 176, 226);
+    }
+    .st-d2 {
+        border-top-color: rgb(160, 176, 226);
+    }
+    .st-d0 {
+        border-left-color: rgb(160, 176, 226);
+    }
+    .st-d1 {
+        border-right-color: rgb(160, 176, 226);
+    }
+    :root {
+        --primary-color: #634646;
+        --background-color: #ffffff;
+        --secondary-background-color: #f0f2f6;
+        --text-color: #a8b5ff;
+        --font: "Source Sans Pro", sans-serif;
+    }
