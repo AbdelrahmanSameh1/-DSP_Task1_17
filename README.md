@@ -1,10 +1,7 @@
 # DSP_Task1_17
 # Digital Signal Processing web app in python using streamlit
-![home page](https://user-images.githubusercontent.com/83358118/197392263-caac07f0-20f0-4954-84a3-76d51be1809a.png)
-![generate page](https://user-images.githubusercontent.com/83358118/197392304-acdaf06f-c655-4378-97c3-03c4185e763e.png)
-![added signal](https://user-images.githubusercontent.com/83358118/197392308-49fe22f1-8731-49b2-b9c4-4b2b3ac8f914.png)
-![sum](https://user-images.githubusercontent.com/83358118/197392317-ac486f8d-6b18-4333-89e2-53d3d9031fdc.png)
-![sampling](https://user-images.githubusercontent.com/83358118/197392323-3252ca24-6ad7-4b02-87ac-1d505a2e40f7.png)
-![noise signal](https://user-images.githubusercontent.com/83358118/197392326-6d367c0d-3d2c-4db1-9ac3-cf53c366ff0e.png)
-![uploaded signal](https://user-images.githubusercontent.com/83358118/197392334-2cbad63d-1253-4bd9-942b-17714c785440.png)
-
+![Screenshot (41)](https://user-images.githubusercontent.com/83358118/197399809-0343a3e6-67bf-4f4c-aeaf-bbfa13e5359a.png)
+![Screenshot (42)](https://user-images.githubusercontent.com/83358118/197399816-cc67aefe-ce98-4c22-92d1-592570f10373.png)
+![Screenshot (43)](https://user-images.githubusercontent.com/83358118/197399821-5883c6b8-859f-4df6-9f4c-2fda606fe150.png)
+![Screenshot (44)](https://user-images.githubusercontent.com/83358118/197399824-14b3603c-4a7b-4733-91a5-05b4b522ca28.png)
+![Screenshot (45)](https://user-images.githubusercontent.com/83358118/197399831-7d478d3b-fd28-429d-926f-d328df4d6b9d.png)
