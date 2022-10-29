@@ -58,18 +58,6 @@ if 'freqsample' not in st.session_state:
 if 'table' not in st.session_state:
     st.session_state['table'] = []
 
-if 'fig' not in st.session_state:
-    st.session_state['fig'] = pp.line()
-
-if 'fig2' not in st.session_state:
-    st.session_state['fig2'] = pp.line()
-
-if 'fig3' not in st.session_state:
-    st.session_state['fig3'] = pp.line()
-
-if 'fig4' not in st.session_state:
-    st.session_state['fig4'] = pp.line()
-
 
 # get the highest frequency
 for item in st.session_state['table']:
@@ -97,10 +85,10 @@ def update_signal(magnitude, frequency):
             np.sin(2*np.pi*frequency*st.session_state['time'][i])
 
 
-def update_signal2(magnitude, frequency):
-    y = magnitude*np.sin(2*np.pi*frequency*st.session_state['time'])
-    st.session_state['fig2'].add_scatter(
-        x=st.session_state['time'], y=y, name="frequency:"+str(frequency))
+# def update_signal2(magnitude, frequency):
+#     y = magnitude*np.sin(2*np.pi*frequency*st.session_state['time'])
+#     st.session_state['fig2'].add_scatter(
+#         x=st.session_state['time'], y=y, name="frequency:"+str(frequency))
 
 
 def noise(snr, add):
@@ -189,7 +177,7 @@ added_frequency = col2.slider(
 add_btn = st.sidebar.button('Add')
 if add_btn:
     update_signal(added_magnitude, added_frequency)
-    update_signal2(added_magnitude, added_frequency)
+    # update_signal2(added_magnitude, added_frequency)
     st.session_state['table'].append(
         [added_magnitude, added_frequency])
     st.experimental_rerun()
