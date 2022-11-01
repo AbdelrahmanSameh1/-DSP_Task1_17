@@ -14,7 +14,7 @@ The user can add noise to the loaded signal with custom/controllable SNR level.
 Sampling and recovery happen in real time upon user changes.
 
 
-<br><br><br>
+<br><br>
 
 
 
