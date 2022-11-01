@@ -1,11 +1,11 @@
 # DSP_Task1_17
-# Digital Signal Processing web app in python using streamlit
+# Signal Processing web app in python using streamlit
 
 **This web app** Allow the user to load a mid-length signal (around 1000 points length), visualize and sample
 it via different frequencies, then use the sampled points to recover the original signal
 
 
-
+<br>
 
 
 
