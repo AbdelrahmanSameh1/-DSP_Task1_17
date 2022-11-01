@@ -4,6 +4,11 @@
 **This web app** Allow the user to load a mid-length signal (around 1000 points length), visualize and sample
 it via different frequencies, then use the sampled points to recover the original signal
 
+
+
+
+
+
 ![Screenshot (48)](https://user-images.githubusercontent.com/83358118/198851370-343d1a28-7854-420e-87f8-d374e118c26d.png)
 ![Screenshot (49)](https://user-images.githubusercontent.com/83358118/198851373-307a3b3b-252a-46df-a2a9-6e3e0d825fe5.png)
 ![Screenshot (50)](https://user-images.githubusercontent.com/83358118/198851378-4609322f-720f-466c-829b-1306c140a7b0.png)
