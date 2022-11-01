@@ -1,3 +1,5 @@
+from asyncore import write
+from email.policy import default
 from pickle import TRUE
 from tkinter.tix import Tree
 from turtle import color, onclick, onkeyrelease, width
@@ -27,17 +29,29 @@ hide_st_style = """
             header {visibility: hidden;}
             </style>
             """
+
+
 st.markdown(hide_st_style, unsafe_allow_html=True)
 
+button_style = """
+        <style>
+        .stButton > button {
+            width: 90px;
+            height: 35px;
+        }
+        </style>
+        """
+st.markdown(button_style, unsafe_allow_html=True)
+
 if 'time' not in st.session_state:
-    st.session_state['time'] = np.linspace(0, 1, 1000)
+    st.session_state['time'] = np.linspace(0, 1, 5000)
 
 if 'table' not in st.session_state:
     st.session_state['table'] = []
 
 
-if 'highest_freq' not in st.session_state:
-    st.session_state['highest_freq'] = 0
+if 'max_freq' not in st.session_state:
+    st.session_state['max_freq'] = 0
 
 
 if 'signal_drawn' not in st.session_state:
@@ -52,26 +66,32 @@ if 'signal_drawn' not in st.session_state:
 if 'sampled_signal_drawn' not in st.session_state:
     st.session_state['sampled_signal_drawn'] = []
 
+
+if 'my_sampled_signal_drawn' not in st.session_state:
+    st.session_state['my_sampled_signal_drawn'] = []
+
 if 'freqsample' not in st.session_state:
     st.session_state['freqsample'] = 0
 
 if 'table' not in st.session_state:
     st.session_state['table'] = []
 
+if 'noise_number' not in st.session_state:
+    st.session_state['noise_number'] = 1
+
 
 # get the highest frequency
 for item in st.session_state['table']:
     # st.write(item)
-    if item[1] > st.session_state['highest_freq']:
-        st.session_state['highest_freq'] = item[1]
-
-# st.write(st.session_state['highest_freq'])
+    if item[1] > st.session_state['max_freq']:
+        st.session_state['max_freq'] = item[1]
 
 
 figure = plotly.line()
 
-figure = plotly.line(
-    x=st.session_state['time'], y=st.session_state['signal_drawn'])
+
+figure.add_scatter(
+    x=st.session_state['time'], y=st.session_state['signal_drawn'], mode='lines', name='Generated Signal', line=dict(color="blue"))
 figure.update_layout(width=5000, height=500,
                      template='simple_white',
                      yaxis_title='Amplitude (V)',
@@ -79,29 +99,25 @@ figure.update_layout(width=5000, height=500,
                      hovermode="x")
 
 
-def update_signal(magnitude, frequency):
+def update_signal(amplitude, frequency):
     for i in range(len(st.session_state['time'])):
-        st.session_state['signal_drawn'][i] += magnitude * \
+        st.session_state['signal_drawn'][i] += amplitude * \
             np.sin(2*np.pi*frequency*st.session_state['time'][i])
-
-
-# def update_signal2(magnitude, frequency):
-#     y = magnitude*np.sin(2*np.pi*frequency*st.session_state['time'])
-#     st.session_state['fig2'].add_scatter(
-#         x=st.session_state['time'], y=y, name="frequency:"+str(frequency))
 
 
 def noise(snr, add):
     global figure
     if add:
         SNR = 10.0**(snr/10.0)
-        p1 = st.session_state['signal_drawn'].var()
-        n = p1/SNR
+        p1 = st.session_state['signal_drawn'].var()  # get power of signal
+        n = p1/SNR  # power of noise
         noise = sc.sqrt(n)*sc.randn(len(st.session_state['signal_drawn']))
         mixed = st.session_state['signal_drawn']+noise  # signal after Noise
 
         figure = pp.line(
             x=st.session_state['time'], y=mixed)
+        # figure.add_scatter(
+        #     x=st.session_state['time'], y=mixed, mode='lines', name='Generated Signal', line=dict(color="blue"))
         figure.update_layout(width=5000, height=500,
                              template='simple_white',
                              yaxis_title='Amplitude (V)',
@@ -109,7 +125,7 @@ def noise(snr, add):
                              hovermode="x")
     else:
         figure.add_scatter(
-            x=st.session_state['time'], y=st.session_state['signal_drawn'], mode='lines')
+            x=st.session_state['time'], y=st.session_state['signal_drawn'], mode='lines', name='Generated Signal')
 
 
 def clear_signal():
@@ -125,21 +141,14 @@ def reconstruct(time, SampleFrequency):
     for i in range(0, len(st.session_state['sampled_signal_drawn']), 1):
         sum += np.dot(st.session_state['sampled_signal_drawn'][i], np.sinc(
             (time-i*1/SampleFrequency)/(1/SampleFrequency)))
+        # st.write(sum)
     return sum
 
 
 def sampling(SampleFrequency):
     global figure
 
-    # st.write(SampleFrequency)
-    # st.write(resultFreq)
-
     time2 = np.linspace(0, 1, SampleFrequency)
-
-    # if fm == True:
-    #     time2 = np.linspace(0, 1, resultFreq)
-    # elif fm == False:
-    #     time2 = np.linspace(0, 1, SampleFrequency)
 
     st.session_state['sampled_signal_drawn'] = np.zeros(
         len(st.session_state['time']))
@@ -150,11 +159,6 @@ def sampling(SampleFrequency):
     figure.add_scatter(
         x=time2, y=st.session_state['sampled_signal_drawn'], mode='markers', name='Samples')
 
-    # st.session_state['fig3'] = pp.line(
-    #     x=st.session_state['time'], y=st.session_state['signal_drawn'])
-    # st.session_state['fig3'].add_scatter(
-    #     x=time2, y=st.session_state['sampled_signal_drawn'], mode='markers', name='Samples')
-
     interpolation = reconstruct(st.session_state['time'], SampleFrequency)
     figure.add_scatter(
         x=st.session_state['time'], y=interpolation, mode='lines', name='Recovered Signal')
@@ -164,15 +168,17 @@ file = st.sidebar.file_uploader("Upload Files", type={"csv", "txt", "xlsx"})
 
 
 def change():
+
+    clear_signal()
     del st.session_state['time']
     del st.session_state['signal_drawn']
 
 
-col1, col2 = st.sidebar.columns(2)
-added_magnitude = col1.slider(
-    label="Signal Magnitude:", step=1, min_value=1, max_value=50)
-added_frequency = col2.slider(
-    label="Signal Frequency:", step=1, min_value=1, max_value=50)
+up_left_col, up_right_col = st.sidebar.columns(2)
+added_magnitude = up_right_col.slider(
+    label="Amplitude:", step=1, min_value=1, max_value=50)
+added_frequency = up_left_col.slider(
+    label="Frequency:", step=1, min_value=1, max_value=50)
 
 add_btn = st.sidebar.button('Add')
 if add_btn:
@@ -182,24 +188,31 @@ if add_btn:
         [added_magnitude, added_frequency])
     st.experimental_rerun()
 
-col3, col4 = st.sidebar.columns(2)
+down_left_col, down_right_col = st.sidebar.columns(2)
 
-SNR = col3.slider(
-    label="SNR", min_value=0, step=1, max_value=50)
-if SNR != 0:
+
+Add_noise = down_right_col.checkbox("Add_Noise")
+
+if Add_noise:
+    SNR = down_right_col.slider(
+        label="SNR", min_value=1, step=1, max_value=100, value=st.session_state['noise_number'])
+    st.session_state['noise_number'] = SNR
+    # if SNR != 0:
     noise(SNR, True)
 
 
-with st.expander("Choose sampling rate:"):
-    st.session_state['freqsample'] = col4.slider(
-        label="Sampling rate:", min_value=2, max_value=100, step=1)
+max_freq = down_left_col.checkbox("Normalized_Freq")
 
-fm = col4.checkbox("Fm")
+
+with st.expander("Choose sampling frequency:"):
+    st.session_state['freqsample'] = down_left_col.slider(
+        label="Sampling frequency:", min_value=1, max_value=5000, step=1)
+
 
 resultFreq = st.session_state['freqsample'] * \
-    (st.session_state['highest_freq'])
+    (st.session_state['max_freq'])
 
-if fm:
+if max_freq:
     sampling(resultFreq)
 else:
     sampling(st.session_state['freqsample'])
@@ -210,13 +223,13 @@ else:
 undo_signals = st.sidebar.multiselect(
     "Remove signals", options=st.session_state['table'])
 
-col5, col6 = st.sidebar.columns(2)
+remove_col, clear_col, download_col = st.sidebar.columns(3)
 
 
-remove_btn = col5.button('Remove')
+remove_btn = remove_col.button('Remove')
 if remove_btn:
 
-    st.session_state['highest_freq'] = 0
+    st.session_state['max_freq'] = 0
 
     for item in undo_signals:
         update_signal(-1.0*item[0], item[1])
@@ -225,17 +238,22 @@ if remove_btn:
                 st.session_state['table'].remove(item2)
     st.experimental_rerun()
 
-clear = col6.button('Clear All')
+clear = clear_col.button('Clear All')
 if clear:
-    st.session_state['highest_freq'] = 0
+    st.session_state['max_freq'] = 0
     clear_signal()
     st.experimental_rerun()
 
 
 if file is not None:
+    # clear_signal()
+    # st.experimental_rerun()
     File = pd.read_excel(file)
-    apply_btn = st.button('Apply Uploaded signal')
+    apply_btn = st.button('Apply')
     if apply_btn:
+        clear_signal()
+        st.session_state['freqsample'] = 0
+        # st.experimental_rerun()
         change()
 
     if 'time' not in st.session_state:
@@ -255,8 +273,8 @@ worksheet = workbook.add_worksheet()
 worksheet.write_column(0, 0, st.session_state['time'])
 worksheet.write_column(0, 1, st.session_state['signal_drawn'])
 workbook.close()
-st.sidebar.download_button(
-    label="Save Generated Signal",
+download_col.download_button(
+    label="Download",
     data=output.getvalue(),
     file_name="signal.xlsx",
     mime="application/vnd.ms-excel"
