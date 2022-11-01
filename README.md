@@ -1,11 +1,20 @@
 # DSP_Task1_17
 # Signal Processing web app in python using streamlit
 
-**This web app** Allow the user to load a mid-length signal (around 1000 points length), visualize and sample
+<br>
+
+**This web app** Allow the user to load and generate a mid-length signal, visualize and sample
 it via different frequencies, then use the sampled points to recover the original signal
 
+the user can add multiple sinusoidal signals of different frequencies and magnitudes. The user can also
+remove any of the components during preparing the mixed signal.
 
-<br><br><br><br>
+The user can add noise to the loaded signal with custom/controllable SNR level.
+
+Sampling and recovery happen in real time upon user changes.
+
+
+<br><br><br>
 
 
 
