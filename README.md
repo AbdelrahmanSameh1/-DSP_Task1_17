@@ -3,8 +3,8 @@
 
 <br>
 
-**This web app** Allow the user to load and generate a mid-length signal, visualize and sample
-it via different frequencies, then use the sampled points to recover the original signal.
+**This web app** Allow the user to load and generate a mid-length signal, visualize and sample it via 
+different frequencies, then use the sampled points to recover the original signal.
 
 the user can add multiple sinusoidal signals of different frequencies and magnitudes. The user can also
 remove any of the components during preparing the mixed signal.
