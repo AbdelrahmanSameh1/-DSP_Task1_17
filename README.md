@@ -1,7 +1,8 @@
 # DSP_Task1_17
 # Digital Signal Processing web app in python using streamlit
-![Screenshot (41)](https://user-images.githubusercontent.com/83358118/197399809-0343a3e6-67bf-4f4c-aeaf-bbfa13e5359a.png)
-![Screenshot (42)](https://user-images.githubusercontent.com/83358118/197399816-cc67aefe-ce98-4c22-92d1-592570f10373.png)
-![Screenshot (43)](https://user-images.githubusercontent.com/83358118/197399821-5883c6b8-859f-4df6-9f4c-2fda606fe150.png)
-![Screenshot (44)](https://user-images.githubusercontent.com/83358118/197399824-14b3603c-4a7b-4733-91a5-05b4b522ca28.png)
-![Screenshot (45)](https://user-images.githubusercontent.com/83358118/197399831-7d478d3b-fd28-429d-926f-d328df4d6b9d.png)
+
+![Screenshot (48)](https://user-images.githubusercontent.com/83358118/198851370-343d1a28-7854-420e-87f8-d374e118c26d.png)
+![Screenshot (49)](https://user-images.githubusercontent.com/83358118/198851373-307a3b3b-252a-46df-a2a9-6e3e0d825fe5.png)
+![Screenshot (50)](https://user-images.githubusercontent.com/83358118/198851378-4609322f-720f-466c-829b-1306c140a7b0.png)
+![Screenshot (51)](https://user-images.githubusercontent.com/83358118/198851381-739daa07-7089-41a3-b524-4540b39a65cc.png)
+
